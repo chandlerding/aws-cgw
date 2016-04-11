@@ -22,6 +22,7 @@ If you are running this on somewhere else, then you may need to either configure
 
 ##2 How to peer with other VPC
 
+with the helper script peer.py 
 a) Create Customer Gateway in target region, using EIP address of above instances, Dynamic Routing , choose your own ASN, (e.g. 65000)
 
 b) Create & attach VGW to target VPC(s) in target regions(s) , remeber to enable VGW's route propergation;
@@ -34,6 +35,28 @@ e) wait for the VPN connection to be up & running
 
 f) repeat steps a-e to interconnection each and ever target VPC(s) in target region(s) 
 
+Or by 
+
+```
+	cat <<EOF > tunnelcfg
+VGW1=1.2.3.4
+PSK1=psk1
+VTI1_LOCAL=169.254.0.1
+VTI1_REMOT=169.254.0.2
+VGW2=1.2.3.5
+PSK2=psk2
+VTI2_LOCAL=169.254.0.5
+VTI2_REMOT=169.254.0.6
+LOCAL_ASN=65001
+REMOTE_ASN=7224
+EOF
+
+	docker run --privileged -d --env_file tunnelcfg chandlerding/aws-cgw 
+	
+	or if you want it to run on host network
+	docker run --privileged --net=host -d --env_file tunnelcfg chandlerding/aws-cgw 
+	
+```
 
 ##3 How to enable routing between interconnected VPCs
 
