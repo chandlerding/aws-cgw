@@ -2,7 +2,7 @@
 
 Use docker to deliver a transit vpc soltuion for AWS
 
-##1. Prepare
+##1. Prepare ( if you are running this on EC2 )
 a) select a proper region,Create a seperate VPC as transit VPC , with 2 public subnets, and configure Security Groups according to your need;
 
 b) Create an IAM role for the instances , with describe-vpn-connections permission.
@@ -16,6 +16,8 @@ UserData:
 	#!/bin/sh
 	yum update && yum -y install docker
 ```
+
+If you are running this on somewhere else, then you may need to either configure proper access credentials for the helper script ( peer.py ) or you may simply pass every required parameters through environment varaiables during the launch of container.
 
 
 ##2 How to peer with other VPC
