@@ -7,7 +7,7 @@ a) select a proper region,Create a seperate VPC as transit VPC , with 2 public s
 
 b) Create an IAM role for the instances , with describe-vpn-connections permission.
 
-c) Launch an EC2 instances in each subnes, using Amazon Linux AMI (tested, other distribution should also work, but untested at this time) , remember to assign above roles to instance
+c) Launch an EC2 instances in each subnets, using Amazon Linux AMI (tested, other distribution should also work, but untested at this time) , remember to assign above roles to instance
 
 d) Associate EIPs to above instances, if needed
 
@@ -33,7 +33,7 @@ d) SSH to the corresponding instance, and call peer.py -r TARGET_REGION -n vpn-a
 
 e) wait for the VPN connection to be up & running
 
-f) repeat steps a-e to interconnection each and ever target VPC(s) in target region(s) 
+f) repeat steps a-e to interconnection each and every target VPC(s) in target region(s) 
 
 Or by 
 
