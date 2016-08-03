@@ -51,10 +51,10 @@ LOCAL_ASN=65001
 REMOTE_ASN=7224
 EOF
 
-	docker run --privileged -d --env_file tunnelcfg chandlerding/aws-cgw 
+	docker run --privileged -d --env-file tunnelcfg chandlerding/aws-cgw 
 	
 	or if you want it to run on host network
-	docker run --privileged --net=host -d --env_file tunnelcfg chandlerding/aws-cgw 
+	docker run --privileged --net=host -d --env-file tunnelcfg chandlerding/aws-cgw 
 	
 ```
 
