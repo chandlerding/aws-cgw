@@ -16,17 +16,17 @@ setup_env () {
 [ "x${LOCAL_ASN}" != "x" ] || exec echo "\$LOCAL_ASN not set, exiting."
 [ "x${REMOTE_ASN}" != "x" ] || exec echo "\$REMOTE_ASN not set, exiting."
 
-LOCAL_IP=`grep "${HOSTNAME}" /etc/hosts | awk '{print $1}' `
+# LOCAL_IP=`grep "${HOSTNAME}" /etc/hosts | awk '{print $1}' `
 GW_IP=`ip route|grep default|awk '{print $3}'`
 
 }
 
 setup_vti () {
-	ip tunnel add vti1 local ${LOCAL_IP} remote ${VGW1} mode vti key 8
+	ip tunnel add vti1 remote ${VGW1} mode vti key 8
 	ip addr add ${VTI1_LOCAL}/30 dev vti1
 	ip link set vti1 up mtu 1427
 
-	ip tunnel add vti2 local ${LOCAL_IP} remote ${VGW2} mode vti key 16
+	ip tunnel add vti2 remote ${VGW2} mode vti key 16
 	ip addr add ${VTI2_LOCAL}/30 dev vti2
 	ip link set vti2 up mtu 1427
 
